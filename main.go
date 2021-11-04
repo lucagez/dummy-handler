@@ -1,12 +1,15 @@
 package main
 
 import (
-    "net/http"
     "github.com/lucagez/dummy-handler/handler"
+    "net/http"
+    "os"
 )
 
 func main() {
     http.HandleFunc("/hello", handler.HelloHandler)
 
-    http.ListenAndServe(":8090", nil)
+    port := os.Getenv("PORT")
+
+    http.ListenAndServe(":" + port, nil)
 }
